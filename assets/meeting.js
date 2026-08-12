@@ -18,14 +18,18 @@ let M = null;
 
 /* ── 게스트 ───────────────────────────────── */
 function renderGuest() {
-  const saved = localStorage.getItem('pid:' + M.share_token);
-  $('#guest').classList.remove('hidden');
-  $('#gname').value = localStorage.getItem('pname:' + M.share_token) || '';
+    const hint = new Set(M.availabilities.map(a => key(a.d, a.m)));
+  if (hint.size) {
+    const el = $('#ownerHint');
+    el.innerHTML = `<span class="sw" style="background:#d0ebff"></span> `
+      + `${esc(M.owner_name || '담당자')} 가능 시간 (${hint.size * 30 / 60}시간)`;
+    el.classList.remove('hidden');
+  }
 
   renderGrid($('#ggrid'), {
     dates: dateList(M.date_start, M.date_end),
     times: timeList(M.day_start_min, M.day_end_min),
-    mode: 'select', selected
+    mode: 'select', selected, hint
   });
 
   $('#submit').onclick = async () => {
