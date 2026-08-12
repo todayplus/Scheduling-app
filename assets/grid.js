@@ -14,9 +14,12 @@ function renderGrid(el, { dates, times, mode, selected, counts, total, onChange 
   dates.forEach(d => g.appendChild(cell('hd', dateLabel(d))));
 
   times.forEach(m => {
-    g.appendChild(cell('th', m % 60 === 0 ? hhmm(m) : ''));
+    const th = cell('th', m % 60 === 0 ? hhmm(m) : '');
+    if (m % 60 === 0) th.classList.add('hr');
+    g.appendChild(th);
     dates.forEach(d => {
       const c = cell('cell',''); const k = key(d,m); c.dataset.key = k;
+      if (m % 60 === 0) c.classList.add('hr');
       if (mode === 'select') { if (selected.has(k)) c.classList.add('on'); }
       else {
         const n = counts.get(k) || 0;
