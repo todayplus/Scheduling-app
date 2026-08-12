@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>일정 조율</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1 id="mtitle">불러오는 중…</h1>
+  <p id="meta" class="hint"></p>
+
+  <!-- 게스트 -->
+  <section id="guest" class="card hidden">
+    <div class="row">
+      <label>이름 <input id="gname" placeholder="홍길동"></label>
+      <label>회사/소속 <input id="gcompany" placeholder="(선택)"></label>
+    </div>
+    <p class="hint">가능한 시간을 <b>드래그</b>해서 칠해주세요.</p>
+    <div id="ggrid" class="gridwrap"></div>
+    <button id="submit" class="primary">제출하기</button>
+  </section>
+
+  <section id="done" class="card hidden">
+    <h2>제출이 완료되었습니다</h2>
+    <p>담당자가 시간을 확정한 뒤 별도로 연락드릴 예정입니다.</p>
+    <button id="edit" class="ghost">내가 입력한 시간 수정하기</button>
+  </section>
+
+  <!-- 주최자 -->
+  <section id="owner" class="card hidden">
+    <div class="linkbox"><input id="shareUrl" readonly><button data-copy="shareUrl">공유 링크 복사</button></div>
+    <h2>제출 현황</h2>
+    <ul id="plist" class="plist"></ul>
+    <h2>겹치는 시간 후보</h2>
+    <div id="cands"></div>
+    <h2>전체 히트맵</h2>
+    <div id="ogrid" class="gridwrap"></div>
+  </section>
+
+  <p id="err" class="err"></p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/api.js"></script>
+<script src="assets/slots.js"></script>
+<script src="assets/grid.js"></script>
+<script src="assets/meeting.js"></script>
+</body>
+</html>
