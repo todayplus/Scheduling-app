@@ -2,7 +2,7 @@
  * mode 'select' : 드래그로 내 가능시간 선택
  * mode 'heat'   : 참가자 수 히트맵 (주최자 전용)
  */
-function renderGrid(el, { dates, times, mode, selected, counts, total, onChange }) {
+function renderGrid(el, { dates, times, mode, selected, hint, counts, total, onChange }) {
   el.innerHTML = '';
   const g = document.createElement('div');
   g.className = 'grid';
@@ -20,7 +20,10 @@ function renderGrid(el, { dates, times, mode, selected, counts, total, onChange 
     dates.forEach(d => {
       const c = cell('cell',''); const k = key(d,m); c.dataset.key = k;
       if (m % 60 === 0) c.classList.add('hr');
-      if (mode === 'select') { if (selected.has(k)) c.classList.add('on'); }
+            if (mode === 'select') {
+        if (hint && hint.has(k)) c.classList.add('hint');
+        if (selected.has(k)) c.classList.add('on');
+      }
             else {
         const n = counts.get(k) || 0;
         if (n === 0) {
