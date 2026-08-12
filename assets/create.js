@@ -51,7 +51,8 @@ $('#create').onclick = async () => {
       p_date_start: cfg.date_start, p_date_end: cfg.date_end,
       p_day_start_min: cfg.day_start_min, p_day_end_min: cfg.day_end_min,
       p_timezone: 'Asia/Seoul', p_owner_name: cfg.owner || '주최자',
-      p_owner_slots: slotsToJson(selected)
+      p_owner_slots: slotsToJson(selected),
+      p_show_owner_avail: $('#showAvail').checked
     });
     const base = location.href.replace(/\/[^/]*$/, '');
     $('#shareUrl').value = `${base}/m.html?t=${r.share_token}`;
