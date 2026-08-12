@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>회의 일정 조율</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>회의 일정 만들기</h1>
+
+  <section id="step1" class="card">
+    <label>회의 제목 <input id="title" placeholder="예) ○○사 킥오프 미팅"></label>
+    <label>내 이름 <input id="ownerName" placeholder="예) 김담당"></label>
+    <div class="row">
+      <label>시작일 <input type="date" id="ds"></label>
+      <label>종료일 <input type="date" id="de"></label>
+    </div>
+    <div class="row">
+      <label>일과 시작
+        <select id="hs"></select>
+      </label>
+      <label>일과 종료
+        <select id="he"></select>
+      </label>
+      <label>회의 길이
+        <select id="dur">
+          <option value="30">30분</option>
+          <option value="60" selected>60분</option>
+          <option value="90">90분</option>
+          <option value="120">120분</option>
+        </select>
+      </label>
+    </div>
+    <button id="next" class="primary">다음: 내 가능시간 선택</button>
+  </section>
+
+  <section id="step2" class="card hidden">
+    <p class="hint">가능한 시간을 <b>드래그</b>해서 칠하세요. 다시 드래그하면 해제됩니다.
+      <span class="tz">기준 시간대: Asia/Seoul</span></p>
+    <div id="grid" class="gridwrap"></div>
+    <button id="create" class="primary">회의 만들고 링크 받기</button>
+    <button id="back" class="ghost">뒤로</button>
+  </section>
+
+  <section id="step3" class="card hidden">
+    <h2>완료되었습니다</h2>
+    <p>아래 <b>고객사 전달용 링크</b>를 메일로 보내세요.</p>
+    <div class="linkbox"><input id="shareUrl" readonly><button data-copy="shareUrl">복사</button></div>
+    <p class="warn">아래 <b>관리자 링크</b>는 나만 보관하세요. 겹치는 시간은 여기서 확인합니다.</p>
+    <div class="linkbox"><input id="ownerUrl" readonly><button data-copy="ownerUrl">복사</button></div>
+    <a id="goOwner" class="primary btn">관리자 화면 열기</a>
+  </section>
+
+  <p id="err" class="err"></p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/api.js"></script>
+<script src="assets/slots.js"></script>
+<script src="assets/grid.js"></script>
+<script src="assets/create.js"></script>
+</body>
+</html>
