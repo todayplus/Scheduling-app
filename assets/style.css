@@ -30,6 +30,11 @@ button,.btn{padding:11px 18px;font-size:15px;border-radius:8px;border:1px solid 
 .th{font-size:11px;color:#868e96;text-align:right;padding:0 6px;background:#f8f9fa;height:22px;
   display:flex;align-items:center;justify-content:flex-end}
 .cell{height:22px;background:#fff;cursor:pointer}
+.cell.hint{background:#d0ebff}
+.cell.on{background:#2563eb}
+.cell.hr, .th.hr{border-top:1px solid #adb5bd}
+.check{display:flex;align-items:center;gap:8px;font-size:14px;color:#212529;margin-bottom:16px}
+.check input{width:auto;margin:0;flex:none}
 .cell.on{background:#2563eb}
 .cell.hr, .th.hr{border-top:1px solid #adb5bd}
 
