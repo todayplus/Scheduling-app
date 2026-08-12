@@ -21,11 +21,17 @@ function renderGrid(el, { dates, times, mode, selected, counts, total, onChange 
       const c = cell('cell',''); const k = key(d,m); c.dataset.key = k;
       if (m % 60 === 0) c.classList.add('hr');
       if (mode === 'select') { if (selected.has(k)) c.classList.add('on'); }
-      else {
+            else {
         const n = counts.get(k) || 0;
-        c.style.background = n === 0 ? '#f1f3f5'
-          : `rgba(37,99,235,${0.15 + 0.85 * (n/total)})`;
-        c.title = `${hhmm(m)} · ${n}/${total}명`;
+        if (n === 0) {
+          c.style.background = '#f1f3f5';
+        } else if (n === total && total >= 2) {
+          c.style.background = '#37b24d';
+          c.style.boxShadow = 'inset 0 0 0 1px #2f9e44';
+        } else {
+          c.style.background = `rgba(37,99,235,${0.15 + 0.6 * (n/total)})`;
+        }
+        c.title = `${hhmm(m)} · ${n}/${total}명` + (n === total && total >= 2 ? ' · 전원 가능' : '');
       }
       g.appendChild(c);
     });
