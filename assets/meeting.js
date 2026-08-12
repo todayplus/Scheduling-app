@@ -18,7 +18,11 @@ let M = null;
 
 /* ── 게스트 ───────────────────────────────── */
 function renderGuest() {
-    const hint = new Set(M.availabilities.map(a => key(a.d, a.m)));
+  const saved = localStorage.getItem('pid:' + M.share_token);
+  $('#guest').classList.remove('hidden');
+  $('#gname').value = localStorage.getItem('pname:' + M.share_token) || '';
+
+  const hint = new Set(M.availabilities.map(a => key(a.d, a.m)));
   if (hint.size) {
     const el = $('#ownerHint');
     el.innerHTML = `<span class="sw" style="background:#d0ebff"></span> `
